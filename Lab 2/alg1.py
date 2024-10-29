@@ -29,7 +29,7 @@ def time_sort(sort_func, data):
     return time.time() - start_time
 
 # Проведение экспериментов
-sizes = [100, 200, 300, 400, 500]
+sizes = range(100, 1000, 200)
 selection_times = []
 quick_times = []
 
@@ -52,9 +52,8 @@ plt.ylabel('Время (сек)')
 plt.legend()
 
 # Отсортированный список
-sorted_list = [i for i in range(500)]
-selection_times_sorted = [time_sort(selection_sort, sorted_list) for _ in sizes]
-quick_times_sorted = [time_sort(quick_sort, sorted_list) for _ in sizes]
+selection_times_sorted = [time_sort(selection_sort, [i for i in range(s)]) for s in sizes]
+quick_times_sorted = [time_sort(quick_sort, [i for i in range(s)]) for s in sizes]
 
 plt.subplot(1, 3, 2)
 plt.plot(sizes, selection_times_sorted, label='Сортировка выбором')
@@ -65,17 +64,17 @@ plt.ylabel('Время (сек)')
 plt.legend()
 
 # Обратно отсортированный список
-reverse_sorted_list = sorted_list[::-1]
-selection_times_reverse_sorted = [time_sort(selection_sort, reverse_sorted_list) for _ in sizes]
-quick_times_reverse_sorted = [time_sort(quick_sort, reverse_sorted_list) for _ in sizes]
+# reverse_sorted_list = sorted_list[::-1]
+# selection_times_reverse_sorted = [time_sort(selection_sort, reverse_sorted_list) for _ in sizes]
+# quick_times_reverse_sorted = [time_sort(quick_sort, reverse_sorted_list) for _ in sizes]
 
-plt.subplot(1, 3, 3)
-plt.plot(sizes, selection_times_reverse_sorted, label='Сортировка выбором')
-plt.plot(sizes, quick_times_reverse_sorted, label='Быстрая сортировка')
-plt.title('Обратно отсортированный список')
-plt.xlabel('Размер списка')
-plt.ylabel('Время (сек)')
-plt.legend()
+# plt.subplot(1, 3, 3)
+# plt.plot(sizes, selection_times_reverse_sorted, label='Сортировка выбором')
+# plt.plot(sizes, quick_times_reverse_sorted, label='Быстрая сортировка')
+# plt.title('Обратно отсортированный список')
+# plt.xlabel('Размер списка')
+# plt.ylabel('Время (сек)')
+# plt.legend()
 
 plt.tight_layout()
 plt.show()

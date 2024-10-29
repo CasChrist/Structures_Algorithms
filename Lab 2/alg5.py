@@ -6,18 +6,19 @@ def tree(branchLen, t):
 
     if branchLen > 5:
         t.forward(branchLen)
-
+        angle = random.randint(15, 45)
+        n = random.randint(10, 20)
         # Поворот и рекурсия для правой ветви
-        t.right(random.randint(15, 45))
-        tree(branchLen - random.randint(10, 20), t)
+        t.right(angle)
+        tree(branchLen - n, t)
 
         # Поворот и рекурсия для левой ветви
-        t.left(random.randint(15, 45))
-        tree(branchLen - random.randint(10, 20), t)
+        t.left(angle)
+        tree(branchLen - n, t)
 
         # Возврат на исходную позицию
-        t.right(random.randint(15, 45))
-        t.backward(branchLen)
+        t.right(angle)
+        t.backward(n)
     else:
         t.color("green")  # Цвет листьев
         t.forward(branchLen)
